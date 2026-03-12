@@ -14,17 +14,13 @@ Click the green **"Use this template"** button on this repo (top right). This cr
 
 ### Step 2: Deploy to Vercel (Free)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/musician-website-template)
-
-1. Click the **Deploy with Vercel** button above (or use your new repo's URL in the link)
-2. Sign in with GitHub (free account)
-3. Select your new repo and click **Deploy**
-4. In about 2 minutes, you'll get a live URL like `your-band.vercel.app`
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
 1. Click the **Deploy with Vercel** button above
 2. Sign in with GitHub (free account)
-3. Click **Deploy** — Vercel will build and host your site
-4. In about 2 minutes, you'll get a live URL like `your-band.vercel.app`
+3. **Import** — Select the repository you just created from the template (it will be in your GitHub account)
+4. Click **Deploy**
+5. In about 2 minutes, you'll get a live URL like `your-band.vercel.app`
 
 ### Step 3: Add Your Content
 
@@ -149,4 +145,3 @@ Before sharing this template:
 
 1. **Push to GitHub** — Create a new repo and push this project
 2. **Enable template** — Repo Settings → check "Template repository"
-3. **Update Deploy button** — In this README, replace `YOUR_USERNAME` in the Vercel deploy URL with your GitHub username
