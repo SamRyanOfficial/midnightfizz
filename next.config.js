@@ -2,7 +2,10 @@
 const nextConfig = {
   output: 'standalone',
   images: {
-    domains: ['res.cloudinary.com'], // Add any image domains you're using
+    remotePatterns: [
+      { protocol: 'https', hostname: 'placehold.co', pathname: '/**' },
+      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
+    ],
   },
   experimental: {
     // Prevent Next.js from looking for package.json in parent directories

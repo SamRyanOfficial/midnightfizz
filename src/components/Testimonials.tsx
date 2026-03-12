@@ -1,25 +1,25 @@
 "use client"
 
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, MapPin, Calendar, Music, PartyPopper, Briefcase } from 'lucide-react';
-import { cn } from "@/lib/utils";
-import { Review, reviews } from '@/data/reviews';
+import React, { useState } from "react"
+import { ChevronDown, ChevronUp, MapPin, Calendar, Music, PartyPopper, Briefcase } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Review, reviews } from "@/data/reviews"
 
-const INITIAL_DISPLAY_COUNT = 6;
+const INITIAL_DISPLAY_COUNT = 6
 
 const getEventIcon = (eventType: string) => {
-  const type = eventType.toLowerCase();
-  if (type.includes('wedding')) return <Music className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400 flex-shrink-0" />;
-  if (type.includes('corporate')) return <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400 flex-shrink-0" />;
-  return <PartyPopper className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400 flex-shrink-0" />;
-};
+  const type = eventType.toLowerCase()
+  if (type.includes("wedding")) return <Music className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
+  if (type.includes("corporate")) return <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
+  return <PartyPopper className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
+}
 
 const ReviewCard = ({ review }: { review: Review }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const shouldTruncate = review.text.length > 200;
+  const [isExpanded, setIsExpanded] = useState(false)
+  const shouldTruncate = review.text.length > 200
 
   return (
-    <div 
+    <div
       className={cn(
         "bg-gradient-to-r from-gray-900/80 to-black/80 backdrop-blur-sm border border-gray-800/50 rounded-lg shadow-xl",
         "hover:from-gray-900/90 hover:to-black/90 transition-all duration-300",
@@ -30,7 +30,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
       <div className="flex-1">
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <div>
-            <p className="font-semibold text-orange-400 text-base sm:text-lg mb-1 sm:mb-2">{review.author}</p>
+            <p className="font-semibold text-slate-400 text-base sm:text-lg mb-1 sm:mb-2">{review.author}</p>
             <div className="flex text-yellow-400">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -40,16 +40,16 @@ const ReviewCard = ({ review }: { review: Review }) => {
             </div>
           </div>
         </div>
-        
+
         <div className="space-y-3 sm:space-y-4">
           <p className="text-gray-200 leading-relaxed text-sm sm:text-base">
             {shouldTruncate && !isExpanded ? `${review.text.slice(0, 200)}...` : review.text}
           </p>
-          
+
           {shouldTruncate && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1 text-xs sm:text-sm font-medium mt-2"
+              className="text-slate-400 hover:text-slate-300 transition-colors flex items-center gap-1 text-xs sm:text-sm font-medium mt-2"
             >
               {isExpanded ? (
                 <>
@@ -74,52 +74,52 @@ const ReviewCard = ({ review }: { review: Review }) => {
             <span>{review.event}</span>
           </div>
           <div className="flex items-center gap-2">
-            <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400 flex-shrink-0" />
+            <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
             <span className="break-words">{review.venue}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400 flex-shrink-0" />
+            <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
             <span>{review.date}</span>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const Testimonials = () => {
-  const [filter, setFilter] = useState('all');
-  const [showAll, setShowAll] = useState(false);
-  
-  const filteredReviews = reviews.filter(review => {
-    if (filter === 'all') return true;
-    if (filter === 'weddings') return review.event.toLowerCase().includes('wedding');
-    if (filter === 'corporate') return review.event.toLowerCase().includes('corporate');
-    return review.event.toLowerCase().includes('birthday');
-  });
+  const [filter, setFilter] = useState("all")
+  const [showAll, setShowAll] = useState(false)
 
-  const displayedReviews = showAll ? filteredReviews : filteredReviews.slice(0, INITIAL_DISPLAY_COUNT);
+  const filteredReviews = reviews.filter((review) => {
+    if (filter === "all") return true
+    if (filter === "weddings") return review.event.toLowerCase().includes("wedding")
+    if (filter === "corporate") return review.event.toLowerCase().includes("corporate")
+    return review.event.toLowerCase().includes("birthday")
+  })
+
+  const displayedReviews = showAll ? filteredReviews : filteredReviews.slice(0, INITIAL_DISPLAY_COUNT)
 
   return (
     <section id="reviews" className="py-12 sm:py-16 bg-gradient-to-b from-black via-black/95 to-black">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-6 text-white">What Our Clients Say</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-6 text-white">
+            What Our Clients Say
+          </h2>
           <p className="text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Read reviews from our amazing clients who have experienced our live music at their special events.
           </p>
 
           <div className="flex justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 px-2">
-            {['all', 'weddings', 'corporate', 'birthdays'].map((type) => (
+            {["all", "weddings", "corporate", "birthdays"].map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
                 className={cn(
                   "px-3 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300",
                   "whitespace-nowrap",
-                  filter === type
-                    ? "bg-orange-500 text-white"
-                    : "bg-gray-900/50 text-gray-400 hover:bg-gray-900 hover:text-white"
+                  filter === type ? "bg-slate-600 text-white" : "bg-gray-900/50 text-gray-400 hover:bg-gray-900 hover:text-white"
                 )}
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -137,7 +137,7 @@ const Testimonials = () => {
             <div className="flex justify-center mt-8 sm:mt-12">
               <button
                 onClick={() => setShowAll(!showAll)}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 text-sm sm:text-base"
+                className="bg-slate-600 hover:bg-slate-500 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 text-sm sm:text-base"
               >
                 {showAll ? (
                   <>
@@ -156,7 +156,7 @@ const Testimonials = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Testimonials; 
+export default Testimonials

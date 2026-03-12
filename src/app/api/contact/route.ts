@@ -3,6 +3,7 @@ import { Resend } from "resend"
 import { headers } from "next/headers"
 import { z } from "zod"
 import { rateLimit } from "@/lib/rate-limit"
+import { contactApiConfig } from "@/config/contact-api"
 
 // Input validation schema
 const contactSchema = z.object({
@@ -17,15 +18,8 @@ const limiter = rateLimit({
   uniqueTokenPerInterval: 500,
 })
 
-// Log environment state
-console.log("Environment check:", {
-  hasResendKey: !!process.env.RESEND_API_KEY,
-  keyLength: process.env.RESEND_API_KEY?.length,
-  nodeEnv: process.env.NODE_ENV
-})
-
 // Initialize Resend only if API key is available
-const resend = process.env.RESEND_API_KEY 
+const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null
 
@@ -40,29 +34,24 @@ const sanitizeHtml = (str: string) => {
 
 export async function POST(req: Request) {
   try {
-    // Check if Resend is properly initialized
+    const contactEmail = process.env.CONTACT_EMAIL || contactApiConfig.fallbackContactEmail
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"
+
     if (!resend) {
-      console.error("Resend API key is not configured", {
-        hasKey: !!process.env.RESEND_API_KEY,
-        keyLength: process.env.RESEND_API_KEY?.length,
-        nodeEnv: process.env.NODE_ENV
-      })
       return NextResponse.json(
-        { 
-          error: "Email service not configured. Please try again later or contact us directly at copperskiesmusic@gmail.com",
-          details: "Missing API configuration"
+        {
+          error: `Email service not configured. Please try again later or contact us directly at ${contactEmail}`,
+          details: "Missing RESEND_API_KEY",
         },
         { status: 503 }
       )
     }
 
-    // Get IP for rate limiting
     const headersList = await headers()
     const ip = headersList.get("x-forwarded-for") ?? "127.0.0.1"
 
-    // Apply rate limiting
     try {
-      await limiter.check(5, ip) // 5 requests per minute per IP
+      await limiter.check(5, ip)
     } catch {
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
@@ -70,15 +59,11 @@ export async function POST(req: Request) {
       )
     }
 
-    // Parse and validate input
     const body = await req.json()
-    console.log("Received form data:", body)
-
     const result = contactSchema.safeParse(body)
 
     if (!result.success) {
       const errorMessages = result.error.errors.map(err => `${err.path}: ${err.message}`).join(", ")
-      console.error("Validation error:", errorMessages)
       return NextResponse.json(
         { error: "Invalid input", details: errorMessages },
         { status: 400 }
@@ -87,18 +72,16 @@ export async function POST(req: Request) {
 
     const { name, email, subject, message } = result.data
 
-    // Sanitize input for email template
     const sanitizedName = sanitizeHtml(name)
     const sanitizedEmail = sanitizeHtml(email)
     const sanitizedSubject = sanitizeHtml(subject)
     const sanitizedMessage = sanitizeHtml(message)
 
-    console.log("Attempting to send email with Resend...")
     const { error } = await resend.emails.send({
-      from: "Copper Skies <contact@copperskies.co.nz>",
-      to: ["copperskiesmusic@gmail.com"],
+      from: fromEmail,
+      to: [contactEmail],
       reply_to: sanitizedEmail,
-      subject: `New Contact Form Submission: ${sanitizedSubject}`,
+      subject: `New Contact Form: ${sanitizedSubject}`,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${sanitizedName}</p>
@@ -111,69 +94,61 @@ export async function POST(req: Request) {
     })
 
     if (error) {
-      console.error("Resend API Error:", {
-        message: error.message,
-        name: error.name,
-        details: error
-      })
-      
-      // Handle domain verification error specifically
       if (error.message?.toLowerCase().includes("domain is not verified")) {
         return NextResponse.json(
-          { 
-            error: "Email service not fully configured. Please try again later or contact us directly at copperskiesmusic@gmail.com",
-            details: "Domain verification pending"
+          {
+            error: `Email service not fully configured. Please try again later or contact us directly at ${contactEmail}`,
+            details: "Domain verification pending",
           },
           { status: 503 }
         )
       }
 
       return NextResponse.json(
-        { 
+        {
           error: "Failed to send email. Please try again later.",
-          details: error.message
+          details: error.message,
         },
-        { 
+        {
           status: 500,
           headers: {
             "Content-Security-Policy": "default-src 'self'",
             "X-Content-Type-Options": "nosniff",
             "X-Frame-Options": "DENY",
-            "Referrer-Policy": "no-referrer"
-          }
+            "Referrer-Policy": "no-referrer",
+          },
         }
       )
     }
 
-    console.log("Email sent successfully")
     return NextResponse.json(
       { message: "Email sent successfully" },
-      { 
+      {
         status: 200,
         headers: {
           "Content-Security-Policy": "default-src 'self'",
           "X-Content-Type-Options": "nosniff",
           "X-Frame-Options": "DENY",
-          "Referrer-Policy": "no-referrer"
-        }
+          "Referrer-Policy": "no-referrer",
+        },
       }
     )
   } catch (error) {
-    console.error("Unexpected error:", error)
+    const contactEmail = process.env.CONTACT_EMAIL || contactApiConfig.fallbackContactEmail
     return NextResponse.json(
-      { 
+      {
         error: "An unexpected error occurred. Please try again later.",
-        details: error instanceof Error ? error.message : "Unknown error"
+        details: error instanceof Error ? error.message : "Unknown error",
       },
-      { 
+      {
         status: 500,
         headers: {
           "Content-Security-Policy": "default-src 'self'",
           "X-Content-Type-Options": "nosniff",
           "X-Frame-Options": "DENY",
-          "Referrer-Policy": "no-referrer"
-        }
+          "Referrer-Policy": "no-referrer",
+        },
       }
     )
   }
-} 
+}

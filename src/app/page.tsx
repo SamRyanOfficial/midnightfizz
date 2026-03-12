@@ -12,7 +12,7 @@ import Image from "next/image"
 import FAQ from "@/components/FAQ"
 import Testimonials from "@/components/Testimonials"
 
-export default function CopperSkiesLanding() {
+export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />

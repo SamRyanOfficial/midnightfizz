@@ -1,38 +1,12 @@
 "use client"
 
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { cn } from "@/lib/utils";
-
-const faqs = [
-  {
-    question: "What types of events do Copper Skies perform at?",
-    answer: "We're full-time musicians who've played hundreds of events across New Zealand — from unforgettable weddings to relaxed beachside birthdays, buzzing corporate events, and rowdy bar gigs. Whether it's a black-tie function or a backyard party, we know how to read the room and bring exactly the right energy."
-  },
-  {
-    question: "What kind of music do you play?",
-    answer: "We cover a wide mix of rock, country, pop, blues, folk, and a touch of Irish. Think crowd favourites, modern hits, throwbacks, and unexpected gems — all with our own spin and signature harmonies. We tailor every set to your event, whether that's mellow and acoustic or high-energy and dance-floor ready."
-  },
-  {
-    question: "How do you handle wedding ceremony music?",
-    answer: "Ceremony music is something we take seriously. We'll work with you to choose the perfect songs for walking down the aisle, signing the register, and making your grand exit. We can perform these moments live, or we can use Spotify through our equipment if you want a specific version of a song played at just the right moment."
-  },
-  {
-    question: "Can you play a full-day wedding?",
-    answer: "Yes, absolutely. We often provide live music for the entire day — from the ceremony, to the afternoon canapés and cocktail hour, through to a full three-hour dance floor set at the reception. We can take care of it all and keep the vibe flowing from start to finish."
-  },
-  {
-    question: "Where do you perform?",
-    answer: "We're based in Mount Maunganui and regularly perform across Tauranga, the Bay of Plenty, and anywhere in New Zealand that calls for great live music. If the event's right, we'll hit the road — or the skies."
-  },
-  {
-    question: "Why book Copper Skies for corporate events?",
-    answer: "We know how to keep things professional and fun. With years of experience and a huge repertoire, we adjust to suit your vibe — whether you want smooth background music during networking or a high-energy set to close the night."
-  }
-];
+import React, { useState } from "react"
+import { ChevronDown } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { faqs } from "@/config/faq"
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <section id="faq" className="py-16 bg-gradient-to-b from-black via-black/95 to-black">
@@ -55,10 +29,7 @@ const FAQ = () => {
                 >
                   <span className="text-lg font-medium text-white">{faq.question}</span>
                   <ChevronDown
-                    className={cn(
-                      "w-5 h-5 text-orange-400 transition-transform duration-300",
-                      openIndex === index ? "rotate-180" : ""
-                    )}
+                    className={cn("w-5 h-5 text-slate-400 transition-transform duration-300", openIndex === index ? "rotate-180" : "")}
                   />
                 </button>
                 <div
@@ -67,9 +38,7 @@ const FAQ = () => {
                     openIndex === index ? "max-h-96" : "max-h-0"
                   )}
                 >
-                  <p className="px-6 pb-4 text-gray-300 leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  <p className="px-6 pb-4 text-gray-300 leading-relaxed">{faq.answer}</p>
                 </div>
               </div>
             ))}
@@ -77,7 +46,7 @@ const FAQ = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default FAQ; 
+export default FAQ
