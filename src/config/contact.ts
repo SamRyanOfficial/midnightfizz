@@ -5,21 +5,21 @@
 
 export const contactConfig = {
   /** Your phone number (include country code, e.g., +1 555 123 4567) */
-  phone: "+1 555 123 4567",
+  phone: "+64 21 107 9135",
 
   /** Email address for contact form and display */
-  email: "your@email.com",
+  email: "midnightfizzzz@gmail.com",
 
   /** Physical location or service area */
-  location: "Your City, Your Country",
+  location: "Bay of Plenty, New Zealand",
 
   /** Social media links - leave empty string "" to hide a platform */
   social: {
-    facebook: "https://www.facebook.com/yourpage",
-    instagram: "https://www.instagram.com/yourhandle",
-    youtube: "https://www.youtube.com/@yourchannel",
+    facebook: "https://www.facebook.com/MidnightFizz",
+    instagram: "https://www.instagram.com/midnight_fizzzz/",
+    youtube: "https://www.youtube.com/watch?v=itWzsGSbSeQ&list=RDitWzsGSbSeQ&start_radio=1",
     twitter: "",
     spotify: "",
     tiktok: "",
   },
-};
+}

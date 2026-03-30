@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import EventSchema from "@/components/EventSchema";
 import { siteConfig } from "@/config/site";
 import { contactConfig } from "@/config/contact";
 
-const inter = Inter({ subsets: ["latin"] });
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: siteConfig.metadata.title,
@@ -89,7 +100,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -97,7 +108,7 @@ export default function RootLayout({
         />
         <EventSchema />
       </head>
-      <body className={inter.className}>
+      <body className="font-sans antialiased bg-[#0D0A0E] text-[#F0E4C4]">
         {children}
       </body>
     </html>

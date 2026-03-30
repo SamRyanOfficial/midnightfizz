@@ -1,118 +1,103 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Instagram, Facebook, Youtube, Menu, X } from "lucide-react"
+import { brandImages } from "@/config/brand-images"
 import { siteConfig } from "@/config/site"
-import { contactConfig } from "@/config/contact"
 
-const socialLinks = [
-  { href: contactConfig.social.instagram, icon: Instagram },
-  { href: contactConfig.social.facebook, icon: Facebook },
-  { href: contactConfig.social.youtube, icon: Youtube },
-].filter((link) => link.href)
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Videos", href: "#videos" },
+  { label: "Services", href: "#services" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Events", href: "#events" },
+  { label: "Contact", href: "#contact" },
+]
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          <Link href="/" className="flex-shrink-0">
-            <span className="text-xl font-bold text-white hover:text-slate-400 transition-colors">
-              {siteConfig.name}
-            </span>
-          </Link>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "glass border-b border-[#C9A84C]/10 py-3" : "bg-transparent py-5"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <Link href="/" aria-label="Home">
+          <Image
+            src={brandImages.logo}
+            alt={siteConfig.name}
+            width={140}
+            height={70}
+            className="h-12 w-auto object-contain"
+            priority
+          />
+        </Link>
 
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#about" className="text-sm font-medium text-gray-300 hover:text-slate-400 transition-all duration-200">
-              About
-            </Link>
-            <Link href="#music" className="text-sm font-medium text-gray-300 hover:text-slate-400 transition-all duration-200">
-              Music
-            </Link>
-            <Link href="#shows" className="text-sm font-medium text-gray-300 hover:text-slate-400 transition-all duration-200">
-              Shows
-            </Link>
-            <Link href="#gallery" className="text-sm font-medium text-gray-300 hover:text-slate-400 transition-all duration-200">
-              Gallery
-            </Link>
-            <Link href="#reviews" className="text-sm font-medium text-gray-300 hover:text-slate-400 transition-all duration-200">
-              Reviews
-            </Link>
-            <Link href="#faq" className="text-sm font-medium text-gray-300 hover:text-slate-400 transition-all duration-200">
-              FAQ
-            </Link>
-            <Link href="#contact" className="text-sm font-medium text-gray-300 hover:text-slate-400 transition-all duration-200">
-              Contact
-            </Link>
-          </nav>
-
-          <div className="flex items-center space-x-4">
-            {socialLinks.length > 0 && (
-              <div className="flex items-center space-x-2">
-                {socialLinks.map(({ href, icon: Icon }) => (
-                  <Button
-                    key={href}
-                    variant="ghost"
-                    size="icon"
-                    className="text-gray-400 hover:text-slate-400 hover:scale-110 transition-all duration-200 h-8 w-8"
-                    asChild
-                  >
-                    <a href={href} target="_blank" rel="noopener noreferrer" aria-label="Social link">
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  </Button>
-                ))}
-              </div>
-            )}
-
-            <Button className="hidden md:inline-flex bg-slate-600 hover:bg-slate-500 text-white" asChild>
-              <Link href="#contact">Book Us</Link>
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-gray-400 hover:text-slate-400"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-[#9A8A7A] hover:text-[#C9A84C] transition-colors duration-200 tracking-widest uppercase font-sans"
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
-        </div>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <Link
+          href="#contact"
+          className="hidden md:inline-flex items-center px-6 py-2.5 rounded-none border border-[#C9A84C] text-[#C9A84C] text-sm font-semibold tracking-widest uppercase hover:bg-[#C9A84C] hover:text-[#0D0A0E] transition-all duration-300 font-sans"
+        >
+          Book Now
+        </Link>
+
+        <button
+          type="button"
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          <span
+            className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+          />
+          <span className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+          <span
+            className={`block w-6 h-0.5 bg-[#C9A84C] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+          />
+        </button>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-800 bg-black/95 backdrop-blur-md">
-          <nav className="flex flex-col space-y-4 px-4 py-6">
-            <Link href="#about" className="text-lg font-medium text-gray-300 hover:text-slate-400 py-2 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              About
+      {menuOpen && (
+        <div className="md:hidden glass border-t border-[#C9A84C]/10 px-6 py-6 flex flex-col gap-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-sm font-medium text-[#9A8A7A] hover:text-[#C9A84C] transition-colors uppercase tracking-widest font-sans"
+            >
+              {link.label}
             </Link>
-            <Link href="#music" className="text-lg font-medium text-gray-300 hover:text-slate-400 py-2 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              Music
-            </Link>
-            <Link href="#shows" className="text-lg font-medium text-gray-300 hover:text-slate-400 py-2 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              Shows
-            </Link>
-            <Link href="#gallery" className="text-lg font-medium text-gray-300 hover:text-slate-400 py-2 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              Gallery
-            </Link>
-            <Link href="#reviews" className="text-lg font-medium text-gray-300 hover:text-slate-400 py-2 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              Reviews
-            </Link>
-            <Link href="#faq" className="text-lg font-medium text-gray-300 hover:text-slate-400 py-2 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              FAQ
-            </Link>
-            <Link href="#contact" className="text-lg font-medium text-gray-300 hover:text-slate-400 py-2 text-center" onClick={() => setIsMobileMenuOpen(false)}>
-              Contact
-            </Link>
-            <Button className="bg-slate-600 hover:bg-slate-500 text-white mt-4 py-3 w-full" asChild onClick={() => setIsMobileMenuOpen(false)}>
-              <Link href="#contact">Book Us</Link>
-            </Button>
-          </nav>
+          ))}
+          <Link
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+            className="mt-2 inline-flex items-center justify-center px-6 py-3 border border-[#C9A84C] text-[#C9A84C] text-sm font-semibold uppercase tracking-widest hover:bg-[#C9A84C] hover:text-[#0D0A0E] transition-all duration-300 font-sans"
+          >
+            Book Now
+          </Link>
         </div>
       )}
     </header>

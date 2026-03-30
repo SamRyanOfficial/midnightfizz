@@ -9,9 +9,9 @@ const INITIAL_DISPLAY_COUNT = 6
 
 const getEventIcon = (eventType: string) => {
   const type = eventType.toLowerCase()
-  if (type.includes("wedding")) return <Music className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
-  if (type.includes("corporate")) return <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
-  return <PartyPopper className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
+  if (type.includes("wedding")) return <Music className="w-3 h-3 sm:w-4 sm:h-4 text-[#C9A84C] flex-shrink-0" />
+  if (type.includes("corporate")) return <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 text-[#C9A84C] flex-shrink-0" />
+  return <PartyPopper className="w-3 h-3 sm:w-4 sm:h-4 text-[#C9A84C] flex-shrink-0" />
 }
 
 const ReviewCard = ({ review }: { review: Review }) => {
@@ -19,70 +19,74 @@ const ReviewCard = ({ review }: { review: Review }) => {
   const shouldTruncate = review.text.length > 200
 
   return (
-    <div
-      className={cn(
-        "bg-gradient-to-r from-gray-900/80 to-black/80 backdrop-blur-sm border border-gray-800/50 rounded-lg shadow-xl",
-        "hover:from-gray-900/90 hover:to-black/90 transition-all duration-300",
-        "flex flex-col h-full",
-        "p-4 sm:p-6 md:p-8"
-      )}
-    >
+    <div className="relative border border-[#C9A84C]/10 bg-[#0D0A0E] p-8 sm:p-10 hover:border-[#C9A84C]/30 transition-all duration-300 group overflow-hidden flex flex-col h-full">
+      <span
+        className="absolute top-4 right-6 font-serif text-7xl sm:text-8xl text-[#C9A84C]/8 leading-none select-none pointer-events-none"
+        aria-hidden="true"
+      >
+        &ldquo;
+      </span>
+
+      <div className="flex gap-1 mb-4" aria-label="5 out of 5 stars">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <svg key={i} className="w-3.5 h-3.5 text-[#C9A84C]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        ))}
+      </div>
+
       <div className="flex-1">
-        <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <p className="font-serif text-lg sm:text-xl font-light text-[#F0E4C4] leading-relaxed italic">
+          {shouldTruncate && !isExpanded ? `${review.text.slice(0, 200)}...` : review.text}
+        </p>
+
+        {shouldTruncate && (
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-[#C9A84C] hover:text-[#E2C97E] transition-colors flex items-center gap-1 text-xs sm:text-sm font-medium mt-3 font-sans"
+          >
+            {isExpanded ? (
+              <>
+                Read less
+                <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" />
+              </>
+            ) : (
+              <>
+                Read more
+                <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
+              </>
+            )}
+          </button>
+        )}
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-[#C9A84C]/10">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 border border-[#C9A84C]/30 flex items-center justify-center text-[#C9A84C] font-serif text-sm flex-shrink-0">
+            {review.author.charAt(0)}
+          </div>
           <div>
-            <p className="font-semibold text-slate-400 text-base sm:text-lg mb-1 sm:mb-2">{review.author}</p>
-            <div className="flex text-yellow-400">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
+            <p className="text-[#F0E4C4] text-sm font-sans font-semibold">{review.author}</p>
+            <div className="flex flex-col gap-1 mt-2 text-xs text-[#9A8A7A] font-sans">
+              <div className="flex items-center gap-2">
+                {getEventIcon(review.event)}
+                <span>{review.event}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3 h-3 text-[#C9A84C] flex-shrink-0" />
+                <span className="break-words">{review.venue}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Calendar className="w-3 h-3 text-[#C9A84C] flex-shrink-0" />
+                <span>{review.date}</span>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="space-y-3 sm:space-y-4">
-          <p className="text-gray-200 leading-relaxed text-sm sm:text-base">
-            {shouldTruncate && !isExpanded ? `${review.text.slice(0, 200)}...` : review.text}
-          </p>
-
-          {shouldTruncate && (
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="text-slate-400 hover:text-slate-300 transition-colors flex items-center gap-1 text-xs sm:text-sm font-medium mt-2"
-            >
-              {isExpanded ? (
-                <>
-                  Read less
-                  <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" />
-                </>
-              ) : (
-                <>
-                  Read more
-                  <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
-                </>
-              )}
-            </button>
-          )}
-        </div>
       </div>
 
-      <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-800/50">
-        <div className="flex flex-col gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-400">
-          <div className="flex items-center gap-2">
-            {getEventIcon(review.event)}
-            <span>{review.event}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
-            <span className="break-words">{review.venue}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400 flex-shrink-0" />
-            <span>{review.date}</span>
-          </div>
-        </div>
-      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
   )
 }
@@ -101,60 +105,73 @@ const Testimonials = () => {
   const displayedReviews = showAll ? filteredReviews : filteredReviews.slice(0, INITIAL_DISPLAY_COUNT)
 
   return (
-    <section id="reviews" className="py-12 sm:py-16 bg-gradient-to-b from-black via-black/95 to-black">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-6 text-white">
-            What Our Clients Say
+    <section id="reviews" className="relative py-32 velvet-section overflow-hidden section-glow-gold">
+      <div className="absolute top-0 left-0 right-0 gold-rule" />
+
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-5">
+            <div className="w-12 h-px bg-[#C9A84C]" />
+            <span className="text-[#C9A84C] text-xs font-sans font-semibold uppercase tracking-[0.25em]">What Clients Say</span>
+            <div className="w-12 h-px bg-[#C9A84C]" />
+          </div>
+          <h2 className="font-serif text-5xl md:text-6xl font-light text-[#F0E4C4]">
+            Loved by <em className="gradient-text not-italic">Clients</em>
           </h2>
-          <p className="text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto text-sm sm:text-base px-4">
-            Read reviews from our amazing clients who have experienced our live music at their special events.
+          <p className="text-[#9A8A7A] text-center mt-5 max-w-2xl mx-auto text-sm sm:text-base font-sans leading-relaxed">
+            Read reviews from clients who have experienced our live music at their events.
           </p>
-
-          <div className="flex justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 px-2">
-            {["all", "weddings", "corporate", "birthdays"].map((type) => (
-              <button
-                key={type}
-                onClick={() => setFilter(type)}
-                className={cn(
-                  "px-3 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300",
-                  "whitespace-nowrap",
-                  filter === type ? "bg-slate-600 text-white" : "bg-gray-900/50 text-gray-400 hover:bg-gray-900 hover:text-white"
-                )}
-              >
-                {type.charAt(0).toUpperCase() + type.slice(1)}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid gap-4 sm:gap-6 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {displayedReviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
-          </div>
-
-          {filteredReviews.length > INITIAL_DISPLAY_COUNT && (
-            <div className="flex justify-center mt-8 sm:mt-12">
-              <button
-                onClick={() => setShowAll(!showAll)}
-                className="bg-slate-600 hover:bg-slate-500 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 text-sm sm:text-base"
-              >
-                {showAll ? (
-                  <>
-                    Show Less
-                    <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </>
-                ) : (
-                  <>
-                    Show More Reviews
-                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </>
-                )}
-              </button>
-            </div>
-          )}
         </div>
+
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10 sm:mb-12">
+          {["all", "weddings", "corporate", "birthdays"].map((type) => (
+            <button
+              key={type}
+              type="button"
+              onClick={() => setFilter(type)}
+              className={cn(
+                "px-4 sm:px-6 py-2 rounded-none text-xs sm:text-sm font-medium transition-all duration-300",
+                "uppercase tracking-widest font-sans border",
+                filter === type
+                  ? "border-[#C9A84C] bg-[#C9A84C]/10 text-[#C9A84C]"
+                  : "border-[#C9A84C]/15 text-[#9A8A7A] hover:border-[#C9A84C]/40 hover:text-[#F0E4C4]"
+              )}
+            >
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          {displayedReviews.map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
+        </div>
+
+        {filteredReviews.length > INITIAL_DISPLAY_COUNT && (
+          <div className="flex justify-center mt-10 sm:mt-14">
+            <button
+              type="button"
+              onClick={() => setShowAll(!showAll)}
+              className="px-8 py-3 border border-[#C9A84C] text-[#C9A84C] text-sm font-sans font-semibold uppercase tracking-widest hover:bg-[#C9A84C] hover:text-[#0D0A0E] transition-all duration-300 flex items-center gap-2"
+            >
+              {showAll ? (
+                <>
+                  Show Less
+                  <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  Show More Reviews
+                  <ChevronDown className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 crimson-rule" />
     </section>
   )
 }

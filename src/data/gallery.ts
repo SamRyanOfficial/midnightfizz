@@ -1,38 +1,41 @@
 /**
  * Gallery images.
  * Replace placeholder URLs with your own images in /public/images/
- * Add images to public/images/ and reference them as /images/your-photo.jpg
+ * `span` controls the bento-style layout (Tailwind grid classes).
  */
 
 export interface GalleryImage {
-  src: string;
-  alt: string;
-  objectPosition?: string;
+  src: string
+  alt: string
+  objectPosition?: string
+  /** Tailwind grid span classes, e.g. "col-span-2 row-span-2" */
+  span?: string
 }
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: "https://placehold.co/600x600/1a1a1a/666666?text=Add+Photo+1",
-    alt: "Add your first photo - replace with /images/photo1.jpg",
+    src: "https://placehold.co/800x600/140F15/C9A84C?text=Performance+1",
+    alt: "Band performing on stage",
+    span: "col-span-2",
   },
   {
-    src: "https://placehold.co/600x600/1a1a1a/666666?text=Add+Photo+2",
-    alt: "Add your second photo - replace with /images/photo2.jpg",
+    src: "https://placehold.co/400x600/1E1220/D4547A?text=On+Stage",
+    alt: "Singer performing",
+    span: "col-span-1 row-span-2",
   },
   {
-    src: "https://placehold.co/600x600/1a1a1a/666666?text=Add+Photo+3",
-    alt: "Add your third photo - replace with /images/photo3.jpg",
+    src: "https://placehold.co/400x400/140F15/C9A84C?text=Live+Event",
+    alt: "Corporate event performance",
+    span: "col-span-1",
   },
   {
-    src: "https://placehold.co/600x600/1a1a1a/666666?text=Add+Photo+4",
-    alt: "Add your fourth photo - replace with /images/photo4.jpg",
+    src: "https://placehold.co/400x400/1E1220/8B1A2E?text=Wedding",
+    alt: "Wedding performance",
+    span: "col-span-1",
   },
   {
-    src: "https://placehold.co/600x600/1a1a1a/666666?text=Add+Photo+5",
-    alt: "Add your fifth photo - replace with /images/photo5.jpg",
+    src: "https://placehold.co/800x400/140F15/C9A84C?text=Full+Band",
+    alt: "Full band setup",
+    span: "col-span-2",
   },
-  {
-    src: "https://placehold.co/600x600/1a1a1a/666666?text=Add+Photo+6",
-    alt: "Add your sixth photo - replace with /images/photo6.jpg",
-  },
-];
+]

@@ -2,75 +2,72 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Play, Calendar, MapPin, Music } from "lucide-react"
+import { brandImages } from "@/config/brand-images"
 import { siteConfig } from "@/config/site"
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[40vh] h-auto py-8 md:min-h-screen md:py-0 flex items-end sm:items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
+    <section className="relative flex min-h-[100svh] flex-col overflow-x-hidden" aria-label="Hero">
+      <div className="absolute inset-0 z-0">
         <Image
-          src="https://placehold.co/1920x1080/1a1a1a/666666?text=Add+Your+Hero+Photo"
-          alt={siteConfig.name}
+          src={brandImages.heroBackground}
+          alt={`${siteConfig.name} performing`}
           fill
-          className="object-cover"
+          className="object-cover object-center"
+          sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D0A0E]/65 via-[#0D0A0E]/55 to-[#0D0A0E]" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#8B1A2E]/15 via-transparent to-[#7B2FFF]/10" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 sm:h-48 bg-gradient-to-t from-[#0D0A0E] to-transparent" />
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pb-4 sm:pb-0">
-        <div className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8">
-          <div className="relative">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mx-auto animate-in fade-in duration-1000 drop-shadow-lg">
-              {siteConfig.name}
-            </h1>
+      <div className="absolute top-1/3 left-1/4 w-[min(500px,50vw)] h-[min(500px,50vw)] rounded-full bg-[#8B1A2E]/8 blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-1/3 right-1/4 w-[min(400px,45vw)] h-[min(400px,45vw)] rounded-full bg-[#7B2FFF]/8 blur-[120px] pointer-events-none z-0" />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6 pb-12 pt-28 sm:pt-32 md:pt-36">
+        <div className="flex w-full max-w-3xl flex-col items-center text-center">
+          {/* ~30% larger than previous max-w-sm (24rem): 24 × 1.3 ≈ 31.2rem */}
+          <div className="animate-fade-in-up mx-auto w-full max-w-[31rem] px-2">
+            <Image
+              src={brandImages.logo}
+              alt={siteConfig.name}
+              width={780}
+              height={390}
+              className="h-auto w-full object-contain drop-shadow-2xl"
+              priority
+            />
           </div>
-          <p className="text-xs sm:text-base md:text-xl lg:text-2xl text-gray-200 max-w-2xl mx-auto leading-relaxed px-2 animate-in fade-in duration-1000 delay-300">
-            <span className="font-semibold text-slate-400">{siteConfig.tagline}</span>
-            {" — "}
-            <span className="font-semibold text-white">{siteConfig.taglineSubtitle}</span>
+
+          <div className="animate-fade-in-up-delay-1 gold-rule mx-auto mb-8 mt-4 w-32" />
+
+          <p className="animate-fade-in-up-delay-1 mb-2 font-serif text-2xl font-light italic tracking-[0.15em] text-[#F0E4C4]/90 md:text-3xl">
+            {siteConfig.tagline}
           </p>
-        </div>
 
-        <div className="flex flex-row items-center justify-center space-x-3 sm:space-x-4 mb-4 sm:mb-6 md:mb-8 animate-in fade-in duration-1000 delay-500">
-          <Button
-            className="bg-slate-600 hover:bg-slate-500 text-white px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 w-32 sm:w-auto"
-            asChild
-          >
-            <Link href="#music">
-              <Play className="mr-1.5 h-3 w-3 sm:h-5 sm:w-5" />
-              Listen Now
+          <p className="animate-fade-in-up-delay-2 mt-4 max-w-lg text-base leading-relaxed text-[#9A8A7A] font-sans md:text-lg">
+            {siteConfig.taglineSubtitle}
+          </p>
+
+          <div className="animate-fade-in-up-delay-3 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Link
+              href="#contact"
+              className="animate-pulse-gold border border-[#C9A84C] px-9 py-4 font-sans text-sm font-semibold uppercase tracking-widest text-[#C9A84C] transition-all duration-300 hover:bg-[#C9A84C] hover:text-[#0D0A0E]"
+            >
+              Check Availability
             </Link>
-          </Button>
-          <Button
-            variant="outline"
-            className="border-2 border-white text-white hover:bg-white hover:text-black bg-transparent px-3 sm:px-8 py-1.5 sm:py-3 text-xs sm:text-base hover:scale-105 transition-all duration-200 shadow-lg w-32 sm:w-auto"
-            asChild
-          >
-            <Link href="#contact">
-              <Calendar className="mr-1.5 h-3 w-3 sm:h-5 sm:w-5" />
-              Contact us
+            <Link
+              href="#videos"
+              className="border border-[#F0E4C4]/20 px-9 py-4 font-sans text-sm font-semibold uppercase tracking-widest text-[#F0E4C4]/70 transition-all duration-300 hover:border-[#F0E4C4]/50 hover:text-[#F0E4C4]"
+            >
+              Watch Live
             </Link>
-          </Button>
-        </div>
-
-        <div className="flex flex-row items-center justify-center space-x-3 sm:space-x-6 text-[8px] sm:text-sm text-gray-300 px-2 sm:px-4 animate-in fade-in duration-1000 delay-700">
-          <div className="flex items-center bg-black/30 px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-full backdrop-blur-sm whitespace-nowrap">
-            <MapPin className="mr-1 sm:mr-2 h-2.5 w-2.5 sm:h-4 sm:w-4 text-slate-400" />
-            {siteConfig.location}
           </div>
-          <div className="hidden sm:flex items-center bg-black/30 px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-full backdrop-blur-sm whitespace-nowrap">
-            <Music className="mr-1 sm:mr-2 h-2.5 w-2.5 sm:h-4 sm:w-4 text-slate-400" />
-            {siteConfig.genre}
-          </div>
-        </div>
-      </div>
 
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center shadow-lg">
-          <div className="w-1 h-3 bg-white rounded-full mt-2"></div>
+          <div className="mt-8 flex flex-col items-center gap-2 sm:mt-14">
+            <span className="font-sans text-xs uppercase tracking-[0.3em] text-[#9A8A7A]">Scroll</span>
+            <div className="h-12 w-px bg-gradient-to-b from-[#C9A84C]/60 to-transparent" />
+          </div>
         </div>
       </div>
     </section>

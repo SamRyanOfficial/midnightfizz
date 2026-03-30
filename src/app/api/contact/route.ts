@@ -86,7 +86,7 @@ export async function POST(req: Request) {
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${sanitizedName}</p>
         <p><strong>Email:</strong> ${sanitizedEmail}</p>
-        <p><strong>Subject:</strong> ${sanitizedSubject}</p>
+        <p><strong>Event type:</strong> ${sanitizedSubject}</p>
         <br/>
         <p><strong>Message:</strong></p>
         <p>${sanitizedMessage.replace(/\n/g, "<br/>")}</p>

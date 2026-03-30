@@ -2,31 +2,32 @@
 
 import Header from "@/components/Header"
 import Hero from "@/components/Hero"
+import TrustBar from "@/components/TrustBar"
 import About from "@/components/About"
-import Music from "@/components/Music"
-import Shows from "@/components/Shows"
+import VideoSection from "@/components/VideoSection"
+import Services from "@/components/Services"
+import Testimonials from "@/components/Testimonials"
 import Gallery from "@/components/Gallery"
+import Shows from "@/components/Shows"
 import Contact from "@/components/Contact"
 import Footer from "@/components/Footer"
-import Image from "next/image"
-import FAQ from "@/components/FAQ"
-import Testimonials from "@/components/Testimonials"
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen bg-[#0D0A0E] text-[#F0E4C4] font-sans">
       <Header />
       <main className="flex-1">
         <Hero />
+        <TrustBar />
         <About />
-        <Music />
-        <Shows />
-        <Gallery />
-        <Contact />
+        <VideoSection />
+        <Services />
         <Testimonials />
-        <FAQ />
+        <Gallery />
+        <Shows />
+        <Contact />
       </main>
       <Footer />
     </div>
   )
-} 
+}

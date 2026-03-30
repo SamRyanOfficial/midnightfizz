@@ -4,10 +4,8 @@
  * Example: "https://www.youtube.com/watch?v=ABC123" -> use "ABC123"
  */
 
-export const youtubeVideos: string[] = [
-  "dQw4w9WgXcQ", // Replace with your first video ID
-  "dQw4w9WgXcQ", // Replace with your second video ID
-];
+export const youtubeVideos: string[] = ["itWzsGSbSeQ", "B5R6V_ulv_Y"]
 
-/** Your full YouTube channel URL */
-export const youtubeChannelUrl = "https://www.youtube.com/@yourchannel";
+/** Primary YouTube link (e.g. featured video or channel) */
+export const youtubeChannelUrl =
+  "https://www.youtube.com/watch?v=itWzsGSbSeQ&list=RDitWzsGSbSeQ&start_radio=1"

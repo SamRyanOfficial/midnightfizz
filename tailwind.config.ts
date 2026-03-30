@@ -16,6 +16,10 @@ const config: Config = {
   		},
   	},
   	extend: {
+  		fontFamily: {
+  			sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+  			serif: ["var(--font-cormorant)", "Georgia", "serif"],
+  		},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',

@@ -4,20 +4,17 @@
  */
 
 export const aboutConfig = {
-  /** Main quote or tagline in the about section */
-  quote: "Planning an event can be stressful - but the music doesn't have to be. We bring the fun and keep the energy exactly where it needs to be.",
-
-  /** Main bio paragraphs - add as many as you need */
+  /** Main bio paragraphs — edit as you like */
   bio: [
-    "Your band name is one of the most in-demand acts in your area. Add your story here - how long you've been together, your experience, and what makes you unique.",
-    "Don't let the format fool you - you deliver the energy of a full band. Add your experience, setlist size, and what you bring to events.",
-    "Your massive setlist spans multiple genres. Add your equipment, specialties, and what you provide (sound, lighting, etc.).",
+    "Midnight Fizz delivers high-energy live music for corporate events, weddings, private parties, bars, and venues across New Zealand. [Add more about your sound, experience, and what makes your show special here.]",
+    "The band features Sammie Campbell (vocals), Kane Sherwood (lead guitar), Manuel Kahura (drums), and Sam Shirley (bass and keys). [Add band history, favourite moments, or how you work with clients here.]",
   ],
+}
 
-  /** Stats shown in the about section - edit as needed */
-  stats: [
-    { value: "5+", label: "Years Pro" },
-    { value: "100+", label: "Events" },
-    { value: "200+", label: "Songs" },
-  ],
-};
+/** Stats row below the hero (trust bar) */
+export const trustBarStats = [
+  { value: "300+", label: "Events Performed" },
+  { value: "Nationwide", label: "Performances" },
+  { value: "5-Star", label: "Reviews" },
+  { value: "Top Venues", label: "Trusted By" },
+]

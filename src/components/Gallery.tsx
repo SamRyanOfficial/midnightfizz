@@ -1,34 +1,42 @@
 "use client"
 
-import Image from "next/image"
 import { galleryImages } from "@/data/gallery"
 
 export default function Gallery() {
+  if (galleryImages.length === 0) return null
+
   return (
-    <section id="gallery" className="py-12 sm:py-16 lg:py-20 bg-black">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="text-center space-y-4 mb-8 sm:mb-12">
-          <h2 className="text-[2.2rem] sm:text-[2.75rem] md:text-[3.3rem] font-bold text-white">
-            <span className="text-slate-400">Gallery</span>
+    <section id="gallery" className="relative py-32 overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#D4547A]/5 blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-5">
+            <div className="w-12 h-px bg-[#8B1A2E]" />
+            <span className="text-[#C9A84C] text-xs font-sans font-semibold uppercase tracking-[0.25em]">Our Work</span>
+            <div className="w-12 h-px bg-[#8B1A2E]" />
+          </div>
+          <h2 className="font-serif text-5xl md:text-6xl font-light text-[#F0E4C4]">
+            Moments That <em className="gradient-text not-italic">Last</em>
           </h2>
-          <p className="text-base sm:text-lg text-gray-300">Moments from our performances</p>
         </div>
 
-        <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3">
-          {galleryImages.map((image, i) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-2 gap-3 auto-rows-[minmax(180px,240px)]">
+          {galleryImages.map((img, i) => (
             <div
-              key={i}
-              className="relative aspect-square rounded-lg overflow-hidden group shadow-lg hover:shadow-2xl transition-all duration-300"
+              key={`${img.src}-${i}`}
+              className={`${img.span ?? ""} relative overflow-hidden group cursor-pointer border border-transparent hover:border-[#C9A84C]/30 transition-all duration-300`}
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={400}
-                height={400}
-                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
-                style={{ objectPosition: image.objectPosition || "center" }}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                style={img.objectPosition ? { objectPosition: img.objectPosition } : undefined}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300" />
+              <div className="absolute inset-0 bg-[#8B1A2E]/0 group-hover:bg-[#8B1A2E]/10 transition-colors duration-300" />
+              <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>
