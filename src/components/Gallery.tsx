@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { galleryImages } from "@/data/gallery"
 
 export default function Gallery() {
@@ -21,18 +22,19 @@ export default function Gallery() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-2 gap-3 auto-rows-[minmax(180px,240px)]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {galleryImages.map((img, i) => (
             <div
               key={`${img.src}-${i}`}
-              className={`${img.span ?? ""} relative overflow-hidden group cursor-pointer border border-transparent hover:border-[#C9A84C]/30 transition-all duration-300`}
+              className="relative aspect-[3/4] overflow-hidden group cursor-pointer border border-transparent hover:border-[#C9A84C]/30 transition-all duration-300"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
                 style={img.objectPosition ? { objectPosition: img.objectPosition } : undefined}
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
               <div className="absolute inset-0 bg-[#8B1A2E]/0 group-hover:bg-[#8B1A2E]/10 transition-colors duration-300" />
               <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

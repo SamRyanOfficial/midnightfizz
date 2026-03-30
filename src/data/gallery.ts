@@ -1,41 +1,44 @@
 /**
- * Gallery images.
- * Replace placeholder URLs with your own images in /public/images/
- * `span` controls the bento-style layout (Tailwind grid classes).
+ * Gallery images under /public/images/gallery/
  */
 
 export interface GalleryImage {
   src: string
   alt: string
   objectPosition?: string
-  /** Tailwind grid span classes, e.g. "col-span-2 row-span-2" */
-  span?: string
 }
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: "https://placehold.co/800x600/140F15/C9A84C?text=Performance+1",
-    alt: "Band performing on stage",
-    span: "col-span-2",
+    src: "/images/gallery/01.png",
+    alt: "Midnight Fizz — full lineup in front of a brick wall, Bay of Plenty",
   },
   {
-    src: "https://placehold.co/400x600/1E1220/D4547A?text=On+Stage",
-    alt: "Singer performing",
-    span: "col-span-1 row-span-2",
+    src: "/images/gallery/02.png",
+    alt: "Midnight Fizz — band on a coastal boardwalk with palm trees",
   },
   {
-    src: "https://placehold.co/400x400/140F15/C9A84C?text=Live+Event",
-    alt: "Corporate event performance",
-    span: "col-span-1",
+    src: "/images/gallery/03.png",
+    alt: "Midnight Fizz — low-angle group shot against blue sky",
   },
   {
-    src: "https://placehold.co/400x400/1E1220/8B1A2E?text=Wedding",
-    alt: "Wedding performance",
-    span: "col-span-1",
+    src: "/images/gallery/04.png",
+    alt: "Midnight Fizz — four-piece against a slatted wall",
   },
   {
-    src: "https://placehold.co/800x400/140F15/C9A84C?text=Full+Band",
-    alt: "Full band setup",
-    span: "col-span-2",
+    src: "/images/gallery/05.png",
+    alt: "Midnight Fizz — Sammie Campbell, Kane Sherwood, Manuel Kahura, and Sam Shirley seated on a concrete ledge",
+  },
+  {
+    src: "/images/gallery/06.png",
+    alt: "Midnight Fizz — promo shot outside urban storefront",
+  },
+  {
+    src: "/images/gallery/07.png",
+    alt: "Midnight Fizz — golden hour in front of glass building",
+  },
+  {
+    src: "/images/gallery/08.png",
+    alt: "Midnight Fizz — harbour and hills, Bay of Plenty, New Zealand",
   },
 ]

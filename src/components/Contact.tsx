@@ -94,7 +94,7 @@ export default function Contact() {
             Book <em className="gradient-text not-italic">{siteConfig.name}</em>
           </h2>
           <p className="mt-5 text-[#9A8A7A] text-base max-w-lg mx-auto leading-relaxed font-sans">
-            No robots here — this goes direct to us. We typically respond within one business day.
+            Tell us about your event — we read every message and usually reply within one business day.
           </p>
         </div>
 

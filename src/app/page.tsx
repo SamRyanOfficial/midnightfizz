@@ -21,11 +21,11 @@ export default function HomePage() {
         <TrustBar />
         <About />
         <VideoSection />
+        <Contact />
         <Services />
         <Testimonials />
         <Gallery />
         <Shows />
-        <Contact />
       </main>
       <Footer />
     </div>
