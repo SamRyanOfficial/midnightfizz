@@ -13,8 +13,8 @@ export const aboutConfig = {
 
 /** Stats row below the hero (trust bar) */
 export const trustBarStats = [
-  { value: "300+", label: "Events Performed" },
-  { value: "Nationwide", label: "Performances" },
-  { value: "5-Star", label: "Reviews" },
-  { value: "Top Venues", label: "Trusted By" },
+  { value: "200+", label: "Events" },
+  { value: "Nationwide", label: "NZ-Wide" },
+  { value: "5-Star ★", label: "Reviews" },
 ]
+

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
-import EventSchema from "@/components/EventSchema";
 import { siteConfig } from "@/config/site";
 import { contactConfig } from "@/config/contact";
 
@@ -19,9 +18,17 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: siteConfig.metadata.title,
   description: siteConfig.metadata.description,
   keywords: siteConfig.metadata.keywords,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: siteConfig.metadata.title,
     description: siteConfig.metadata.description,
@@ -37,6 +44,12 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.metadata.title,
+    description: siteConfig.metadata.description,
+    images: [`${siteConfig.url}/images/og-image.jpg`],
   },
 };
 
@@ -87,6 +100,27 @@ export default function RootLayout({
         ].filter(Boolean),
       },
       {
+        "@type": "ProfessionalService",
+        "@id": `${siteConfig.url}/#service`,
+        "name": `${siteConfig.name} Live Entertainment`,
+        "url": siteConfig.url,
+        "description":
+          "Live entertainment for weddings, birthday parties, private functions, and corporate events across Bay of Plenty and New Zealand.",
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Bay of Plenty" },
+          { "@type": "Country", "name": "New Zealand" }
+        ],
+        "serviceType": [
+          "Wedding band",
+          "Birthday party entertainment",
+          "Private function entertainment",
+          "Corporate event entertainment"
+        ],
+        "provider": {
+          "@id": `${siteConfig.url}/#organization`,
+        },
+      },
+      {
         "@type": "WebSite",
         "@id": `${siteConfig.url}/#website`,
         "url": siteConfig.url,
@@ -106,7 +140,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
-        <EventSchema />
       </head>
       <body className="font-sans antialiased bg-[#0D0A0E] text-[#F0E4C4]">
         {children}

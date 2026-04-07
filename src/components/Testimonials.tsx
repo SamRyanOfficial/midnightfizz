@@ -1,11 +1,11 @@
 "use client"
 
 import React, { useState } from "react"
-import { ChevronDown, ChevronUp, MapPin, Calendar, Music, PartyPopper, Briefcase } from "lucide-react"
+import { ChevronDown, ChevronUp, MapPin, Music, PartyPopper, Briefcase } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Review, reviews } from "@/data/reviews"
 
-const INITIAL_DISPLAY_COUNT = 6
+const INITIAL_DISPLAY_COUNT = 2
 
 const getEventIcon = (eventType: string) => {
   const type = eventType.toLowerCase()
@@ -77,10 +77,6 @@ const ReviewCard = ({ review }: { review: Review }) => {
                 <MapPin className="w-3 h-3 text-[#C9A84C] flex-shrink-0" />
                 <span className="break-words">{review.venue}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="w-3 h-3 text-[#C9A84C] flex-shrink-0" />
-                <span>{review.date}</span>
-              </div>
             </div>
           </div>
         </div>
@@ -105,11 +101,11 @@ const Testimonials = () => {
   const displayedReviews = showAll ? filteredReviews : filteredReviews.slice(0, INITIAL_DISPLAY_COUNT)
 
   return (
-    <section id="reviews" className="relative py-32 velvet-section overflow-hidden section-glow-gold">
+    <section id="reviews" className="relative py-20 sm:py-28 velvet-section overflow-hidden section-glow-gold">
       <div className="absolute top-0 left-0 right-0 gold-rule" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="flex items-center justify-center gap-4 mb-5">
             <div className="w-12 h-px bg-[#C9A84C]" />
             <span className="text-[#C9A84C] text-xs font-sans font-semibold uppercase tracking-[0.25em]">What Clients Say</span>
@@ -128,7 +124,10 @@ const Testimonials = () => {
             <button
               key={type}
               type="button"
-              onClick={() => setFilter(type)}
+              onClick={() => {
+                setFilter(type)
+                setShowAll(false)
+              }}
               className={cn(
                 "px-4 sm:px-6 py-2 rounded-none text-xs sm:text-sm font-medium transition-all duration-300",
                 "uppercase tracking-widest font-sans border",
@@ -143,8 +142,10 @@ const Testimonials = () => {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {displayedReviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
+          {displayedReviews.map((review, idx) => (
+            <div key={review.id} className={!showAll && idx >= 1 ? "hidden sm:block" : ""}>
+              <ReviewCard review={review} />
+            </div>
           ))}
         </div>
 
@@ -177,3 +178,4 @@ const Testimonials = () => {
 }
 
 export default Testimonials
+

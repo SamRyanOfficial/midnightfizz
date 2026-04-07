@@ -8,7 +8,6 @@ import VideoSection from "@/components/VideoSection"
 import Services from "@/components/Services"
 import Testimonials from "@/components/Testimonials"
 import Gallery from "@/components/Gallery"
-import Shows from "@/components/Shows"
 import Contact from "@/components/Contact"
 import Footer from "@/components/Footer"
 
@@ -21,11 +20,10 @@ export default function HomePage() {
         <TrustBar />
         <About />
         <VideoSection />
-        <Contact />
         <Services />
         <Testimonials />
         <Gallery />
-        <Shows />
+        <Contact />
       </main>
       <Footer />
     </div>

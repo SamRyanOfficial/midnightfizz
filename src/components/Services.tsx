@@ -5,7 +5,7 @@ const services = [
     icon: Music2,
     title: "Weddings",
     desc: "Create a soundtrack for the most important day of your life. We handle ceremony, cocktail hour, and reception with grace and energy.",
-    highlights: ["Ceremony sets", "First dance", "Full reception"],
+    highlights: ["Live Ceremony", "Canapes set", "Full reception"],
     accentColor: "#D4547A",
   },
   {
@@ -19,18 +19,18 @@ const services = [
     icon: Users,
     title: "Private Functions",
     desc: "Birthday milestones, private parties, exclusive soirees — we tailor our performance to your vibe, your guests, and your vision.",
-    highlights: ["Milestone birthdays", "Exclusive parties", "Bespoke setlists"],
+    highlights: ["Birthdays", "Anniversaries", "Private Parties"],
     accentColor: "#8B1A2E",
   },
 ]
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-32 overflow-hidden">
+    <section id="services" className="relative py-20 sm:py-28 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] rounded-full bg-[#C9A84C]/4 blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="flex items-center justify-center gap-4 mb-5">
             <div className="w-12 h-px bg-[#8B1A2E]" />
             <span className="text-[#C9A84C] text-xs font-sans font-semibold uppercase tracking-[0.25em]">What We Offer</span>
@@ -47,7 +47,7 @@ export default function Services() {
             return (
               <div
                 key={service.title}
-                className="group relative border border-[#C9A84C]/10 bg-[#140F15] p-10 hover:border-[#C9A84C]/35 transition-all duration-300 overflow-hidden"
+                className="group relative border border-[#C9A84C]/10 bg-[#140F15] p-8 sm:p-10 hover:border-[#C9A84C]/35 transition-all duration-300 overflow-hidden"
               >
                 <div
                   className="absolute top-0 left-0 w-16 h-16 opacity-20"

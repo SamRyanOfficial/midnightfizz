@@ -28,11 +28,11 @@ export const siteConfig = {
 
   /** Default SEO metadata */
   metadata: {
-    title: "Midnight Fizz — Premium Live Music | Weddings & Corporate Events NZ",
+    title: "Midnight Fizz | Wedding, Birthday & Party Band in Bay of Plenty",
     description:
-      "Midnight Fizz is a premium live band from the Bay of Plenty, New Zealand. Sammie Campbell (vocals), Kane Sherwood (lead guitar), Manuel Kahura (drums), and Sam Shirley (bass & keys). Corporate events, weddings, private functions, bars, and venues.",
+      "Midnight Fizz is a Tauranga-based live party band delivering unforgettable wedding receptions, birthdays, and private events across Bay of Plenty and New Zealand. Also available for polished corporate entertainment.",
     keywords:
-      "Midnight Fizz, live band New Zealand, Bay of Plenty band, wedding band NZ, corporate event band, live music hire, Sammie Campbell, Kane Sherwood, Manuel Kahura, Sam Shirley",
+      "Midnight Fizz, wedding band Tauranga, wedding band Bay of Plenty, birthday party band NZ, private function band, live band New Zealand, corporate entertainment band, wedding reception music, party band Bay of Plenty, live music hire NZ",
   },
 
   /** Accent color for buttons, links, highlights. Use Tailwind classes: slate, zinc, neutral, etc. */

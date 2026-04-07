@@ -79,12 +79,12 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-32 overflow-hidden">
+    <section id="contact" className="relative py-20 sm:py-28 overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[#8B1A2E]/8 blur-[140px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[#C9A84C]/4 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="flex items-center justify-center gap-4 mb-5">
             <div className="w-12 h-px bg-[#8B1A2E]" />
             <span className="text-[#C9A84C] text-xs font-sans font-semibold uppercase tracking-[0.25em]">Let&apos;s Talk</span>
@@ -94,7 +94,7 @@ export default function Contact() {
             Book <em className="gradient-text not-italic">{siteConfig.name}</em>
           </h2>
           <p className="mt-5 text-[#9A8A7A] text-base max-w-lg mx-auto leading-relaxed font-sans">
-            Tell us about your event — we read every message and usually reply within one business day.
+            Enquire today and we&apos;ll get back to you as soon as possible
           </p>
         </div>
 

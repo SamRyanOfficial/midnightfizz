@@ -11,7 +11,6 @@ const navLinks = [
   { label: "Videos", href: "#videos" },
   { label: "Services", href: "#services" },
   { label: "Gallery", href: "#gallery" },
-  { label: "Events", href: "#events" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -79,7 +78,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="text-[#C9A84C] font-sans font-semibold text-xs uppercase tracking-[0.25em] mb-6">Follow Us</h3>
             <div className="flex gap-3 mb-10">
               {socialLinks.map((social) => (
@@ -97,7 +96,7 @@ export default function Footer() {
             </div>
             <Link
               href="#contact"
-              className="inline-flex items-center px-7 py-3.5 border border-[#C9A84C] text-[#C9A84C] text-sm font-sans font-semibold uppercase tracking-widest hover:bg-[#C9A84C] hover:text-[#0D0A0E] transition-all duration-300"
+              className="inline-flex items-center justify-center px-7 py-3.5 border border-[#C9A84C] text-[#C9A84C] text-sm font-sans font-semibold uppercase tracking-widest hover:bg-[#C9A84C] hover:text-[#0D0A0E] transition-all duration-300"
             >
               Book an Enquiry
             </Link>

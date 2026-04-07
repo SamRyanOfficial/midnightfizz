@@ -8,11 +8,11 @@ export default function VideoSection() {
   if (youtubeVideos.length === 0) return null
 
   return (
-    <section id="videos" className="relative py-32 velvet-section overflow-hidden section-glow-crimson">
+    <section id="videos" className="relative py-20 sm:py-28 velvet-section overflow-hidden section-glow-crimson">
       <div className="absolute top-0 left-0 right-0 gold-rule" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="flex items-center justify-center gap-4 mb-5">
             <div className="w-12 h-px bg-[#C9A84C]" />
             <span className="text-[#C9A84C] text-xs font-sans font-semibold uppercase tracking-[0.25em]">Watch Us Perform</span>
@@ -50,7 +50,7 @@ export default function VideoSection() {
             href={youtubeChannelUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-4 border border-[#C9A84C] text-[#C9A84C] font-sans font-semibold text-sm tracking-widest uppercase hover:bg-[#C9A84C] hover:text-[#0D0A0E] transition-all duration-300"
+            className="inline-flex items-center justify-center px-8 py-3.5 border border-[#C9A84C] text-[#C9A84C] font-sans font-semibold text-sm tracking-widest uppercase hover:bg-[#C9A84C] hover:text-[#0D0A0E] transition-all duration-300"
           >
             View More on YouTube
           </Link>

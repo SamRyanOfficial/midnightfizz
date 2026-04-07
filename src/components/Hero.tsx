@@ -96,8 +96,8 @@ function HeroContent({ variant }: { variant: "mobile" | "desktop" }) {
             href="#contact"
             className={
               isMobile
-                ? `${mobileHeroCtaBase} border-[#C9A84C] text-[#C9A84C] shadow-none hover:bg-[#C9A84C] hover:text-[#0D0A0E]`
-                : "animate-pulse-gold border border-[#C9A84C] px-7 py-3 font-sans text-xs font-semibold uppercase tracking-widest text-[#C9A84C] transition-all duration-300 hover:bg-[#C9A84C] hover:text-[#0D0A0E] sm:px-9 sm:py-4 sm:text-sm"
+                ? `${mobileHeroCtaBase} border-[#E2C97E] bg-[#C9A84C]/22 text-[#F3DF9C] shadow-[0_0_30px_rgba(201,168,76,0.45)] ring-1 ring-[#C9A84C]/45 hover:bg-[#E2C97E] hover:text-[#0D0A0E]`
+                : "animate-pulse-gold border border-[#E2C97E] bg-[#C9A84C]/18 px-7 py-3 font-sans text-xs font-semibold uppercase tracking-widest text-[#F3DF9C] shadow-[0_0_34px_rgba(201,168,76,0.48)] ring-1 ring-[#C9A84C]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(201,168,76,0.6)] hover:bg-[#E2C97E] hover:text-[#0D0A0E] sm:px-9 sm:py-4 sm:text-sm"
             }
           >
             Check Availability

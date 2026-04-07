@@ -7,19 +7,20 @@ import { aboutConfig } from "@/data/about"
 
 export default function About() {
   return (
-    <section id="about" className="relative py-32 overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-28 overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[#C9A84C]/5 blur-[160px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#8B1A2E]/6 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-20 items-center">
+        <div className="grid gap-14 md:grid-cols-2 md:gap-20 items-center">
           <div>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center justify-center gap-4 mb-6 md:justify-start">
               <div className="w-12 h-px bg-[#C9A84C]" />
               <span className="text-[#C9A84C] text-xs font-sans font-semibold uppercase tracking-[0.25em]">About Us</span>
+              <div className="w-12 h-px bg-[#C9A84C]" />
             </div>
 
-            <h2 className="font-serif text-5xl md:text-6xl font-light text-[#F0E4C4] leading-tight mb-8">
+            <h2 className="text-center font-serif text-5xl md:text-6xl font-light text-[#F0E4C4] leading-tight mb-8 md:text-left">
               Behind the <em className="gradient-text not-italic">Music</em>
             </h2>
 
