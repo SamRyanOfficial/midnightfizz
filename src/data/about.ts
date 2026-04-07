@@ -6,8 +6,8 @@
 export const aboutConfig = {
   /** Main bio paragraphs — edit as you like */
   bio: [
-    "Midnight Fizz delivers high-energy live music for corporate events, weddings, private parties, bars, and venues across New Zealand. [Add more about your sound, experience, and what makes your show special here.]",
-    "The band features Sammie Campbell (vocals), Kane Sherwood (lead guitar), Manuel Kahura (drums), and Sam Shirley (bass and keys). [Add band history, favourite moments, or how you work with clients here.]",
+    "Midnight Fizz are a Tauranga-based, high-energy party band specialising in unforgettable wedding celebrations. Made up of passionate, experienced musicians, they know how to read a room and keep the dancefloor full from the first song to the last. With a polished repertoire spanning country, rock, funk, RnB, and classic hits, they create seamless, tailored performances that bring every wedding to life.",
+    "They also perform at corporate events and private functions, delivering the same level of energy, professionalism, and crowd engagement. For an extra touch of wow, Midnight Fizz offer a 5-piece lineup featuring saxophone—perfect for elevating the atmosphere even further.",
   ],
 }
 

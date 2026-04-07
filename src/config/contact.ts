@@ -17,7 +17,7 @@ export const contactConfig = {
   social: {
     facebook: "https://www.facebook.com/MidnightFizz",
     instagram: "https://www.instagram.com/midnight_fizzzz/",
-    youtube: "https://www.youtube.com/watch?v=itWzsGSbSeQ&list=RDitWzsGSbSeQ&start_radio=1",
+    youtube: "https://www.youtube.com/watch?v=zjLxGBgXHuE&list=RDzjLxGBgXHuE&start_radio=1",
     twitter: "",
     spotify: "",
     tiktok: "",

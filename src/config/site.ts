@@ -14,6 +14,9 @@ export const siteConfig = {
   taglineSubtitle:
     "Corporate events, weddings, and private functions across New Zealand — performed with world-class artistry.",
 
+  /** Mobile hero only — replaces tagline + subtitle on small screens */
+  heroSubtextMobile: "Music that brings every crowd to life",
+
   /** Location text shown in hero (e.g., "Mount Maunganui, New Zealand") */
   location: "Bay of Plenty, New Zealand",
 

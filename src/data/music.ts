@@ -8,4 +8,4 @@ export const youtubeVideos: string[] = ["itWzsGSbSeQ", "B5R6V_ulv_Y"]
 
 /** Primary YouTube link (e.g. featured video or channel) */
 export const youtubeChannelUrl =
-  "https://www.youtube.com/watch?v=itWzsGSbSeQ&list=RDitWzsGSbSeQ&start_radio=1"
+  "https://www.youtube.com/watch?v=zjLxGBgXHuE&list=RDzjLxGBgXHuE&start_radio=1"

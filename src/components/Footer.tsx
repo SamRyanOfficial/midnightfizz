@@ -54,8 +54,8 @@ export default function Footer() {
             <Image
               src={brandImages.logo}
               alt={siteConfig.name}
-              width={160}
-              height={80}
+              width={1024}
+              height={1024}
               className="h-14 w-auto object-contain mb-6"
             />
             <p className="text-[#9A8A7A] text-sm font-sans leading-relaxed max-w-xs">{siteConfig.metadata.description}</p>

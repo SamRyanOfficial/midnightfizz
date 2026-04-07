@@ -36,9 +36,9 @@ export default function Header() {
           <Image
             src={brandImages.logo}
             alt={siteConfig.name}
-            width={140}
-            height={70}
-            className="h-12 w-auto object-contain"
+            width={1024}
+            height={1024}
+            className="h-10 w-auto object-contain sm:h-12"
             priority
           />
         </Link>

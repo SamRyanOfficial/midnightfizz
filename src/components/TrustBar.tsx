@@ -2,17 +2,20 @@ import { trustBarStats } from "@/data/about"
 
 export default function TrustBar() {
   return (
-    <section className="relative py-10 bg-[#140F15] overflow-hidden">
+    <section className="relative bg-[#140F15] py-4 md:py-10 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 gold-rule" />
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 md:divide-x md:divide-[#C9A84C]/10">
+      <div className="mx-auto max-w-7xl px-3 md:px-6">
+        <div className="grid grid-cols-2 gap-2 gap-y-3 md:grid-cols-4 md:gap-0 md:gap-y-0 md:divide-x md:divide-[#C9A84C]/10">
           {trustBarStats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center text-center px-6">
-              <span className="font-serif text-4xl md:text-5xl font-light gradient-text tracking-tight">
+            <div
+              key={stat.label}
+              className="flex flex-col items-center px-1 py-0.5 text-center md:px-6 md:py-0"
+            >
+              <span className="font-serif text-xl font-light tracking-tight gradient-text md:text-5xl">
                 {stat.value}
               </span>
-              <span className="mt-2 text-xs text-[#9A8A7A] uppercase tracking-[0.2em] font-sans font-medium">
+              <span className="mt-0.5 max-w-[9rem] text-[0.5625rem] font-medium uppercase leading-tight tracking-[0.12em] text-[#9A8A7A] font-sans md:mt-2 md:max-w-none md:text-xs md:leading-normal md:tracking-[0.2em]">
                 {stat.label}
               </span>
             </div>
